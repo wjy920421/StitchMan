@@ -18,6 +18,10 @@
 		57770A601787D59A00A22147 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57770A5F1787D59A00A22147 /* Default-568h@2x.png */; };
 		57770A631787D59A00A22147 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A621787D59A00A22147 /* ViewController.m */; };
 		57770A661787D59A00A22147 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57770A641787D59A00A22147 /* ViewController.xib */; };
+		57770A9B1787D68D00A22147 /* ImageMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9A1787D68D00A22147 /* ImageMatrix.m */; };
+		57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9D1787D6A700A22147 /* ImageConverter.m */; };
+		57770AA11787D6BE00A22147 /* Pyramid.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA01787D6BE00A22147 /* Pyramid.m */; };
+		57770AA41787D6D400A22147 /* Convolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA31787D6D400A22147 /* Convolution.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,14 @@
 		57770A611787D59A00A22147 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		57770A621787D59A00A22147 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		57770A651787D59A00A22147 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		57770A991787D68D00A22147 /* ImageMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMatrix.h; sourceTree = "<group>"; };
+		57770A9A1787D68D00A22147 /* ImageMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMatrix.m; sourceTree = "<group>"; };
+		57770A9C1787D6A700A22147 /* ImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageConverter.h; sourceTree = "<group>"; };
+		57770A9D1787D6A700A22147 /* ImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageConverter.m; sourceTree = "<group>"; };
+		57770A9F1787D6BE00A22147 /* Pyramid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pyramid.h; sourceTree = "<group>"; };
+		57770AA01787D6BE00A22147 /* Pyramid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pyramid.m; sourceTree = "<group>"; };
+		57770AA21787D6D400A22147 /* Convolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Convolution.h; sourceTree = "<group>"; };
+		57770AA31787D6D400A22147 /* Convolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Convolution.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +95,7 @@
 		57770A4F1787D59A00A22147 /* StitchMan */ = {
 			isa = PBXGroup;
 			children = (
+				57770A6D1787D5B500A22147 /* SIFT */,
 				57770A581787D59A00A22147 /* AppDelegate.h */,
 				57770A591787D59A00A22147 /* AppDelegate.m */,
 				57770A611787D59A00A22147 /* ViewController.h */,
@@ -105,6 +118,21 @@
 				57770A5F1787D59A00A22147 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		57770A6D1787D5B500A22147 /* SIFT */ = {
+			isa = PBXGroup;
+			children = (
+				57770A991787D68D00A22147 /* ImageMatrix.h */,
+				57770A9A1787D68D00A22147 /* ImageMatrix.m */,
+				57770A9C1787D6A700A22147 /* ImageConverter.h */,
+				57770A9D1787D6A700A22147 /* ImageConverter.m */,
+				57770A9F1787D6BE00A22147 /* Pyramid.h */,
+				57770AA01787D6BE00A22147 /* Pyramid.m */,
+				57770AA21787D6D400A22147 /* Convolution.h */,
+				57770AA31787D6D400A22147 /* Convolution.m */,
+			);
+			name = SIFT;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +204,10 @@
 				57770A561787D59A00A22147 /* main.m in Sources */,
 				57770A5A1787D59A00A22147 /* AppDelegate.m in Sources */,
 				57770A631787D59A00A22147 /* ViewController.m in Sources */,
+				57770A9B1787D68D00A22147 /* ImageMatrix.m in Sources */,
+				57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */,
+				57770AA11787D6BE00A22147 /* Pyramid.m in Sources */,
+				57770AA41787D6D400A22147 /* Convolution.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
