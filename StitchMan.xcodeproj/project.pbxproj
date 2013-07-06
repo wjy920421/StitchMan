@@ -22,6 +22,7 @@
 		57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9D1787D6A700A22147 /* ImageConverter.m */; };
 		57770AA11787D6BE00A22147 /* Pyramid.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA01787D6BE00A22147 /* Pyramid.m */; };
 		57770AA41787D6D400A22147 /* Convolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA31787D6D400A22147 /* Convolution.m */; };
+		57CC59EE1787E3400033B048 /* Keypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CC59ED1787E3400033B048 /* Keypoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		57770AA01787D6BE00A22147 /* Pyramid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pyramid.m; sourceTree = "<group>"; };
 		57770AA21787D6D400A22147 /* Convolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Convolution.h; sourceTree = "<group>"; };
 		57770AA31787D6D400A22147 /* Convolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Convolution.m; sourceTree = "<group>"; };
+		57CC59EC1787E3400033B048 /* Keypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keypoint.h; sourceTree = "<group>"; };
+		57CC59ED1787E3400033B048 /* Keypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keypoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 				57770AA01787D6BE00A22147 /* Pyramid.m */,
 				57770AA21787D6D400A22147 /* Convolution.h */,
 				57770AA31787D6D400A22147 /* Convolution.m */,
+				57CC59EC1787E3400033B048 /* Keypoint.h */,
+				57CC59ED1787E3400033B048 /* Keypoint.m */,
 			);
 			name = SIFT;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */,
 				57770AA11787D6BE00A22147 /* Pyramid.m in Sources */,
 				57770AA41787D6D400A22147 /* Convolution.m in Sources */,
+				57CC59EE1787E3400033B048 /* Keypoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +336,7 @@
 				57770A6B1787D59A00A22147 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
