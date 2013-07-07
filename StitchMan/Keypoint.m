@@ -10,7 +10,7 @@
 
 @implementation Keypoint
 
-- (id)initWithPyramid:(Pyramid *)pyramid
+- (id)initWithX:(int)x Y:(int)y Octave:(int)octave_num Interval:(int)interval_num
 {
     if(self=[super init]){
         

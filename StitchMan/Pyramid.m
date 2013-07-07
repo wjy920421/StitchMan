@@ -30,7 +30,7 @@
         [self setSigma];
         
         //get octave number
-        [self getOctaveNum];
+        [self setOctaveNum];
         
         //build pyramid
         gaussianPyramid=[[NSMutableArray alloc] init];
@@ -130,7 +130,7 @@ __attribute((ns_returns_retained))
     }
 }
 
-- (void)getOctaveNum
+- (void)setOctaveNum
 {
     int size;
     
@@ -144,6 +144,17 @@ __attribute((ns_returns_retained))
         size=size/2;
         octaveNum++;
     }
+}
+
+
+- (int)getOctaveNum
+{
+    return octaveNum;
+}
+
+- (int)getIntervalNum
+{
+    return intervalNum;
 }
 
 @end

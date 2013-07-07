@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Pyramid.h"
 @interface Keypoint : NSObject
 {
-    NSMutableArray *keypoints;
+    @public
+    int x;
+    int y;
+    unsigned char descriptor[4][4][8];
+    
+    double theta;
+    
 }
 
-- (id)initWithPyramid:(Pyramid *)pyramid;
+- (id)initWithX:(int)x Y:(int)y Octave:(int)octave_num Interval:(int)interval_num;
 
 @end

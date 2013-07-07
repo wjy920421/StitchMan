@@ -28,4 +28,8 @@
 
 - (id)initWithImageMatrix:(ImageMatrix *)originalImage;
 
+- (int)getOctaveNum;
+
+- (int)getIntervalNum;
+
 @end
