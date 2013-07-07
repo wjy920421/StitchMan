@@ -21,4 +21,13 @@ __attribute((ns_returns_retained));
 + (ImageMatrix *)convWithGaussian:(ImageMatrix *)target
 sigma:(double)sigma filterSize:(int)filterSize
 __attribute((ns_returns_retained));
+
++ (ImageMatrix *)convWithGaussianFast:(ImageMatrix *)target
+sigma:(double)sigma filterSize:(int)filterSize
+__attribute((ns_returns_retained));
+
++ (ImageMatrix *)getGaussianFilter:(double) sigma
+filterSize:(int)filterSize
+__attribute((ns_returns_retained));
+
 @end

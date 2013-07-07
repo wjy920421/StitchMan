@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		572E04311788D315001FAFCF /* KeypointVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E04301788D315001FAFCF /* KeypointVector.m */; };
+		572E043417890ED7001FAFCF /* SIFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E043317890ED7001FAFCF /* SIFT.m */; };
 		57770A4A1787D59A00A22147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A491787D59A00A22147 /* UIKit.framework */; };
 		57770A4C1787D59A00A22147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A4B1787D59A00A22147 /* Foundation.framework */; };
 		57770A4E1787D59A00A22147 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A4D1787D59A00A22147 /* CoreGraphics.framework */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		572E042F1788D315001FAFCF /* KeypointVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypointVector.h; sourceTree = "<group>"; };
 		572E04301788D315001FAFCF /* KeypointVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypointVector.m; sourceTree = "<group>"; };
+		572E043217890ED7001FAFCF /* SIFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIFT.h; sourceTree = "<group>"; };
+		572E043317890ED7001FAFCF /* SIFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFT.m; sourceTree = "<group>"; };
 		57770A461787D59A00A22147 /* StitchMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StitchMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57770A491787D59A00A22147 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57770A4B1787D59A00A22147 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,8 @@
 				57CC59ED1787E3400033B048 /* Keypoint.m */,
 				572E042F1788D315001FAFCF /* KeypointVector.h */,
 				572E04301788D315001FAFCF /* KeypointVector.m */,
+				572E043217890ED7001FAFCF /* SIFT.h */,
+				572E043317890ED7001FAFCF /* SIFT.m */,
 			);
 			name = SIFT;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				57770AA41787D6D400A22147 /* Convolution.m in Sources */,
 				57CC59EE1787E3400033B048 /* Keypoint.m in Sources */,
 				572E04311788D315001FAFCF /* KeypointVector.m in Sources */,
+				572E043417890ED7001FAFCF /* SIFT.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

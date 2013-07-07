@@ -28,6 +28,10 @@
 
 - (id)initWithImageMatrix:(ImageMatrix *)originalImage;
 
+- (ImageMatrix *)getGaussianMatrixAtOctave:(int)octave_num Interval:(int)interval_num;
+
+- (ImageMatrix *)getDifferenceOfGaussianMatrixAtOctave:(int)octave_num Interval:(int)interval_num;
+
 - (int)getOctaveNum;
 
 - (int)getIntervalNum;

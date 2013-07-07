@@ -8,9 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ImageMatrix.h"
-#import "ImageConverter.h"
-#import "Pyramid.h"
+#import "SIFT.h"
 
 @interface ViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate>

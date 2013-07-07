@@ -34,8 +34,9 @@
         
         //build pyramid
         gaussianPyramid=[[NSMutableArray alloc] init];
+        differenceOfGaussianPyramid=[[NSMutableArray alloc]init];
         
-        for(int i=0;i<=octaveNum;i++){
+        for(int i=0;i<octaveNum;i++){
             for(int j=0;j<intervalNum+3;j++){
                 //gaussian pyramid
                 ImageMatrix *newGaussian=[self buildImageMatrixAtOctave:i Interval:j];
@@ -54,25 +55,7 @@
         }
         
         //test
-        NSFileManager *fileManager=[NSFileManager defaultManager];
-        NSData *data;
-        for(int i=0;i<=octaveNum;i++){
-            for(int j=0;j<intervalNum+3;j++){
-                //gaussian pyramid
-                int index=i*(intervalNum+3)+j;
-                ImageMatrix *im=[gaussianPyramid objectAtIndex:index];
-                UIImage *uiimage=[ImageConverter Luminance2UIImage:im];
-                data=UIImagePNGRepresentation(uiimage);
-                NSString *str
-                =[[NSString alloc] initWithFormat:@"/Users/wjy/Desktop/output/%d.png",index];
-                [fileManager createFileAtPath:str
-                                     contents:data
-                                   attributes:nil];
-            }
-        }
-        //end
-        
-        gaussianPyramid=nil;
+        //[self output];
     }
     return self;
 }
@@ -115,8 +98,8 @@ __attribute((ns_returns_retained))
         if(!(filterSize%2))
             filterSize++;
         
-        output=[Convolution convWithGaussian:previousMatrix
-                                       sigma:sigma[interval_num] filterSize:filterSize];
+        output=[Convolution convWithGaussianFast:previousMatrix
+                                           sigma:sigma[interval_num] filterSize:filterSize];
     }
     return output;
 }
@@ -155,6 +138,36 @@ __attribute((ns_returns_retained))
 - (int)getIntervalNum
 {
     return intervalNum;
+}
+
+- (ImageMatrix *)getGaussianMatrixAtOctave:(int)octave_num Interval:(int)interval_num
+{
+    return [gaussianPyramid objectAtIndex:(octave_num*(intervalNum+3)+interval_num)];
+}
+
+- (ImageMatrix *)getDifferenceOfGaussianMatrixAtOctave:(int)octave_num Interval:(int)interval_num
+{
+    return [differenceOfGaussianPyramid objectAtIndex:(octave_num*(intervalNum+2)+interval_num)];
+}
+
+- (void)output
+{
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    NSData *data;
+    for(int i=0;i<octaveNum;i++){
+        for(int j=0;j<intervalNum+3;j++){
+            //gaussian pyramid
+            int index=i*(intervalNum+3)+j;
+            ImageMatrix *im=[gaussianPyramid objectAtIndex:index];
+            UIImage *uiimage=[ImageConverter Luminance2UIImage:im];
+            data=UIImagePNGRepresentation(uiimage);
+            NSString *str
+            =[[NSString alloc] initWithFormat:@"/Users/wjy/Desktop/output/%d.png",index];
+            [fileManager createFileAtPath:str
+                                 contents:data
+                               attributes:nil];
+        }
+    }
 }
 
 @end

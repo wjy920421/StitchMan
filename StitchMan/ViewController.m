@@ -52,7 +52,7 @@
     self.imageView.image=image;
     ImageMatrix *imageMatrix=[ImageConverter UIImage2ImageMatrixY:image];
     //[imageMatrix print];
-    Pyramid *test=[[Pyramid alloc] initWithImageMatrix:imageMatrix];
+    SIFT *sift=[[SIFT alloc] initWithImageMatrix:imageMatrix];
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     

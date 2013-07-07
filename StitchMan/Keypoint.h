@@ -19,6 +19,10 @@
     
 }
 
+- (id)initWithX:(int)x Y:(int)y;
+
 - (id)initWithX:(int)x Y:(int)y Octave:(int)octave_num Interval:(int)interval_num;
+
+- (void)print;
 
 @end
