@@ -12,6 +12,7 @@
 		57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F7E178A5B6300189CE5 /* ComplexMatrix.m */; };
 		572E04311788D315001FAFCF /* KeypointVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E04301788D315001FAFCF /* KeypointVector.m */; };
 		572E043417890ED7001FAFCF /* SIFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E043317890ED7001FAFCF /* SIFT.m */; };
+		576ADD88178BB47300EB28CE /* Derivative.m in Sources */ = {isa = PBXBuildFile; fileRef = 576ADD87178BB47300EB28CE /* Derivative.m */; };
 		57770A4A1787D59A00A22147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A491787D59A00A22147 /* UIKit.framework */; };
 		57770A4C1787D59A00A22147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A4B1787D59A00A22147 /* Foundation.framework */; };
 		57770A4E1787D59A00A22147 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A4D1787D59A00A22147 /* CoreGraphics.framework */; };
@@ -42,6 +43,8 @@
 		572E04301788D315001FAFCF /* KeypointVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypointVector.m; sourceTree = "<group>"; };
 		572E043217890ED7001FAFCF /* SIFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIFT.h; sourceTree = "<group>"; };
 		572E043317890ED7001FAFCF /* SIFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFT.m; sourceTree = "<group>"; };
+		576ADD86178BB47300EB28CE /* Derivative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Derivative.h; sourceTree = "<group>"; };
+		576ADD87178BB47300EB28CE /* Derivative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Derivative.m; sourceTree = "<group>"; };
 		57770A461787D59A00A22147 /* StitchMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StitchMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57770A491787D59A00A22147 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		57770A4B1787D59A00A22147 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,8 @@
 				57226F7B178A312600189CE5 /* Complex.m */,
 				57226F7D178A5B6300189CE5 /* ComplexMatrix.h */,
 				57226F7E178A5B6300189CE5 /* ComplexMatrix.m */,
+				576ADD86178BB47300EB28CE /* Derivative.h */,
+				576ADD87178BB47300EB28CE /* Derivative.m */,
 			);
 			name = SIFT;
 			sourceTree = "<group>";
@@ -248,6 +253,7 @@
 				57226F79178A2A1300189CE5 /* FFT.m in Sources */,
 				57226F7C178A312600189CE5 /* Complex.m in Sources */,
 				57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */,
+				576ADD88178BB47300EB28CE /* Derivative.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
