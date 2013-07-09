@@ -13,12 +13,13 @@
 
 @interface KeypointVector : NSObject
 {
+    @public
     NSMutableArray *keypoints;
 }
 
 - (id)initWithPyramid:(Pyramid *)pyramid;
 
-- (Keypoint *)getKeypointAtIndex:(int)index __attribute((ns_returns_retained));
+//- (Keypoint *)getKeypointAtIndex:(int)index __attribute((ns_returns_retained));
 
 - (int)getLength;
 

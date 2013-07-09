@@ -35,20 +35,20 @@
 - (void)locateKeypointsAtOctave:(int)octave_num Interval:(int)interval_num
                         Pyramid:(Pyramid *)pyramid
 {
-    int width=[[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num Interval:interval_num]
-               getWidth];
-    int height=[[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num Interval:interval_num]
-                getHeight];
+    ImageMatrix *imtmp=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
+                                                             Interval:interval_num];
+    int width=imtmp->imageWidth;
+    int height=imtmp->imageHeight;
     
     for(int i=1;i<height-1;i++){
         for(int j=1;j<width-1;j++){
             if([self isExtremaAtX:j Y:i
                            Octave:octave_num Interval:interval_num Pyramid:pyramid]){
                 
-                double correction_x=0;
-                double correction_y=0;
-                double x=j;
-                double y=i;
+                float correction_x=0;
+                float correction_y=0;
+                float x=j;
+                float y=i;
                 [self adjustExtremaAtX:&x Y:&y
                                 Octave:octave_num Interval:interval_num Pyramid:pyramid
                      returnCorrectionX:&correction_x CorrectionY:&correction_y];
@@ -68,9 +68,9 @@
 - (BOOL)isExtremaAtX:(int)x Y:(int)y
               Octave:(int)octave_num Interval:(int)interval_num Pyramid:(Pyramid *)pyramid
 {
-    double value=[[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
-                                                        Interval:interval_num]
-                  getValueAtHeight:y Width:x];
+    ImageMatrix *im=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
+                                                          Interval:interval_num];
+    float value=im->pImage[y*im->imageWidth+x];
     
     if(value>=0){
         for(int k=interval_num-1;k<=interval_num+1;k++){
@@ -78,9 +78,12 @@
                 for(int j=x-1;j<=x+1;j++){
                     if(i==y && j==x && k==interval_num)
                         continue;
-                    if(value<[[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
-                                                                    Interval:k]
-                              getValueAtHeight:i Width:j])
+                    
+                    ImageMatrix *imtmp=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
+                                                                             Interval:k];
+                    float valuetmp=imtmp->pImage[i*imtmp->imageWidth+j];
+                    
+                    if(value<valuetmp)
                         return FALSE;
                 }
             }
@@ -92,9 +95,12 @@
                 for(int j=x-1;j<=x+1;j++){
                     if(i==y && j==x && k==interval_num)
                         continue;
-                    if(value>[[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
-                                                                    Interval:k]
-                              getValueAtHeight:i Width:j])
+                    
+                    ImageMatrix *imtmp=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
+                                                                             Interval:k];
+                    float valuetmp=imtmp->pImage[i*imtmp->imageWidth+j];
+                    
+                    if(value>valuetmp)
                         return FALSE;
                 }
             }
@@ -103,9 +109,9 @@
     return TRUE;
 }
 
-- (void)adjustExtremaAtX:(double *)px Y:(double *)py
+- (void)adjustExtremaAtX:(float *)px Y:(float *)py
                   Octave:(int)octave_num Interval:(int)interval_num Pyramid:(Pyramid *)pyramid
-       returnCorrectionX:(double *)p_correction_x CorrectionY:(double *)p_correction_y
+       returnCorrectionX:(float *)p_correction_x CorrectionY:(float *)p_correction_y
 {
     
 }

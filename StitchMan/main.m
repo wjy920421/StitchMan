@@ -11,7 +11,8 @@
 #import "AppDelegate.h"
 
 //test
-#import "Convolution.h"
+#import "ComplexMatrix.h"
+#import "Filter.h"
 #import "ImageMatrix.h"
 #import "Pyramid.h"
 
@@ -19,7 +20,7 @@ int main(int argc, char *argv[])
 {
     @autoreleasepool {
          /*
-         double input[120]={  12,34,56,78,90,11,12,34,56,78,90,11,
+         float input[120]={  12,34,56,78,90,11,12,34,56,78,90,11,
              98,76,54,32,10,98,76,54,32,10,45,82,
              76,54,32,10,45,82,34,56,78,90,11,12,
              76,54,32,10,45,82,34,56,78,90,11,12,
@@ -31,7 +32,7 @@ int main(int argc, char *argv[])
              12,34,56,90,11,12,54,32,10,45,82,34,
          };
          
-         double filter[9]={ -1.0/4,0,1.0/4,
+         float filter[9]={ -1.0/4,0,1.0/4,
          -2.0/4,0,2.0/4,
          -1.0/4,0,1.0/4};
          
@@ -45,10 +46,10 @@ int main(int argc, char *argv[])
          
          //while(1)
          //output=[Convolution conv:inputMatrix filter:filterMatrix];
-         output=[Convolution convWithGaussian:inputMatrix sigma:2 filterSize:13];
+         output=[Filter convWithGaussian:inputMatrix sigma:1 filterSize:7];
         [output print];
         
-        output=[Convolution convWithGaussianFast:inputMatrix sigma:2 filterSize:13];
+        output=[Filter convWithGaussianFast:inputMatrix sigma:1 filterSize:7];
         [output print];
         
          output=nil;
@@ -56,16 +57,26 @@ int main(int argc, char *argv[])
          filterMatrix=nil;
          */
         
+        
         /*
-         double input[65536];
-         for(int i=0;i<256;i++)
-         for(int j=0;j<256;j++)
-         input[i*256+j]=(i+j)%256;
-         Pyramid *test=[[Pyramid alloc] initWithImageMatrix:[[ImageMatrix alloc]
-         initWithArray:input
-         Height:256
-         Width:256]];
-         */
+        clock_t start,finish;
+        start=clock();
+        ImageMatrix *im=[[ImageMatrix alloc] initWithHeight:2000 Width:2000];
+        ComplexMatrix *cm=[[ComplexMatrix alloc] initWithImageMatrix:im];
+        finish=clock();
+        printf("Total time: %f s",(float)(finish-start)/1000000);
+        */
+        float a[30]={
+            1,2,3,4,5,
+            1,2,3,4,5,
+            1,2,3,4,5,
+            1,2,3,4,5,
+            1,2,3,4,5,
+            1,2,3,4,5};
+        ImageMatrix *im=[[ImageMatrix alloc] initWithArray:a Height:6 Width:5];
+        [im print];
+        [im expandWithValue:0 Top:1 Bottom:3 Left:2 Right:4];
+        [im print];
         
         
         

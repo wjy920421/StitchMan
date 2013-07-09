@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57226F79178A2A1300189CE5 /* FFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F78178A2A1300189CE5 /* FFT.m */; };
+		57226F7C178A312600189CE5 /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F7B178A312600189CE5 /* Complex.m */; };
+		57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F7E178A5B6300189CE5 /* ComplexMatrix.m */; };
 		572E04311788D315001FAFCF /* KeypointVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E04301788D315001FAFCF /* KeypointVector.m */; };
 		572E043417890ED7001FAFCF /* SIFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E043317890ED7001FAFCF /* SIFT.m */; };
 		57770A4A1787D59A00A22147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A491787D59A00A22147 /* UIKit.framework */; };
@@ -23,12 +26,18 @@
 		57770A9B1787D68D00A22147 /* ImageMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9A1787D68D00A22147 /* ImageMatrix.m */; };
 		57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9D1787D6A700A22147 /* ImageConverter.m */; };
 		57770AA11787D6BE00A22147 /* Pyramid.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA01787D6BE00A22147 /* Pyramid.m */; };
-		57770AA41787D6D400A22147 /* Convolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA31787D6D400A22147 /* Convolution.m */; };
+		57770AA41787D6D400A22147 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA31787D6D400A22147 /* Filter.m */; };
 		57CC59EE1787E3400033B048 /* Keypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CC59ED1787E3400033B048 /* Keypoint.m */; };
 		57CC59F21787FF800033B048 /* lena512color.png in Resources */ = {isa = PBXBuildFile; fileRef = 57CC59EF1787FE0D0033B048 /* lena512color.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		57226F77178A2A1300189CE5 /* FFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFT.h; sourceTree = "<group>"; };
+		57226F78178A2A1300189CE5 /* FFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFT.m; sourceTree = "<group>"; };
+		57226F7A178A312600189CE5 /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
+		57226F7B178A312600189CE5 /* Complex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Complex.m; sourceTree = "<group>"; };
+		57226F7D178A5B6300189CE5 /* ComplexMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplexMatrix.h; sourceTree = "<group>"; };
+		57226F7E178A5B6300189CE5 /* ComplexMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplexMatrix.m; sourceTree = "<group>"; };
 		572E042F1788D315001FAFCF /* KeypointVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeypointVector.h; sourceTree = "<group>"; };
 		572E04301788D315001FAFCF /* KeypointVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypointVector.m; sourceTree = "<group>"; };
 		572E043217890ED7001FAFCF /* SIFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIFT.h; sourceTree = "<group>"; };
@@ -55,8 +64,8 @@
 		57770A9D1787D6A700A22147 /* ImageConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageConverter.m; sourceTree = "<group>"; };
 		57770A9F1787D6BE00A22147 /* Pyramid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pyramid.h; sourceTree = "<group>"; };
 		57770AA01787D6BE00A22147 /* Pyramid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pyramid.m; sourceTree = "<group>"; };
-		57770AA21787D6D400A22147 /* Convolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Convolution.h; sourceTree = "<group>"; };
-		57770AA31787D6D400A22147 /* Convolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Convolution.m; sourceTree = "<group>"; };
+		57770AA21787D6D400A22147 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		57770AA31787D6D400A22147 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		57CC59EC1787E3400033B048 /* Keypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keypoint.h; sourceTree = "<group>"; };
 		57CC59ED1787E3400033B048 /* Keypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keypoint.m; sourceTree = "<group>"; };
 		57CC59EF1787FE0D0033B048 /* lena512color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lena512color.png; sourceTree = "<group>"; };
@@ -141,14 +150,20 @@
 				57770A9D1787D6A700A22147 /* ImageConverter.m */,
 				57770A9F1787D6BE00A22147 /* Pyramid.h */,
 				57770AA01787D6BE00A22147 /* Pyramid.m */,
-				57770AA21787D6D400A22147 /* Convolution.h */,
-				57770AA31787D6D400A22147 /* Convolution.m */,
+				57770AA21787D6D400A22147 /* Filter.h */,
+				57770AA31787D6D400A22147 /* Filter.m */,
 				57CC59EC1787E3400033B048 /* Keypoint.h */,
 				57CC59ED1787E3400033B048 /* Keypoint.m */,
 				572E042F1788D315001FAFCF /* KeypointVector.h */,
 				572E04301788D315001FAFCF /* KeypointVector.m */,
 				572E043217890ED7001FAFCF /* SIFT.h */,
 				572E043317890ED7001FAFCF /* SIFT.m */,
+				57226F77178A2A1300189CE5 /* FFT.h */,
+				57226F78178A2A1300189CE5 /* FFT.m */,
+				57226F7A178A312600189CE5 /* Complex.h */,
+				57226F7B178A312600189CE5 /* Complex.m */,
+				57226F7D178A5B6300189CE5 /* ComplexMatrix.h */,
+				57226F7E178A5B6300189CE5 /* ComplexMatrix.m */,
 			);
 			name = SIFT;
 			sourceTree = "<group>";
@@ -226,10 +241,13 @@
 				57770A9B1787D68D00A22147 /* ImageMatrix.m in Sources */,
 				57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */,
 				57770AA11787D6BE00A22147 /* Pyramid.m in Sources */,
-				57770AA41787D6D400A22147 /* Convolution.m in Sources */,
+				57770AA41787D6D400A22147 /* Filter.m in Sources */,
 				57CC59EE1787E3400033B048 /* Keypoint.m in Sources */,
 				572E04311788D315001FAFCF /* KeypointVector.m in Sources */,
 				572E043417890ED7001FAFCF /* SIFT.m in Sources */,
+				57226F79178A2A1300189CE5 /* FFT.m in Sources */,
+				57226F7C178A312600189CE5 /* Complex.m in Sources */,
+				57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

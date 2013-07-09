@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Convolution.h"
+#import "Filter.h"
 #import "ImageMatrix.h"
 #import "ImageConverter.h"
 
@@ -16,11 +16,14 @@
 {
     int octaveNum;
     int intervalNum;
-    double sigma[30];
+    float sigma[20];
     
     int originalHeight;
     int originalWidth;
     ImageMatrix *originalImage;
+    
+    ImageMatrix *horizontalGaussianFilter[20];
+    ImageMatrix *verticalGaussianFilter[20];
     
     NSMutableArray *gaussianPyramid;
     NSMutableArray *differenceOfGaussianPyramid;
@@ -35,5 +38,7 @@
 - (int)getOctaveNum;
 
 - (int)getIntervalNum;
+
+- (void)output;
 
 @end

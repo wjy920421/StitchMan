@@ -15,7 +15,8 @@
     if(self=[super init]){
         imageMatrix=[[ImageMatrix alloc] initWithImageMatrix:im];
         [self buildPyramid];
-        [self detectKeypoints];
+        //[pyramid output];
+        //[self detectKeypoints];
     }
     return self;
 }

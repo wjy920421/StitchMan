@@ -20,8 +20,8 @@
     if(self=[super init]){
         //get original image
         originalImage=oi;
-        originalHeight=[originalImage getHeight];
-        originalWidth=[originalImage getWidth];
+        originalHeight=originalImage->imageHeight;
+        originalWidth=originalImage->imageWidth;
         
         intervalNum=3;
         sigma[0]=1.6;
@@ -31,6 +31,10 @@
         
         //get octave number
         [self setOctaveNum];
+        
+        //set gaussian filters
+        [self setHorizontalGaussianFilter];
+        [self setVerticalGaussianFilter];
         
         //build pyramid
         gaussianPyramid=[[NSMutableArray alloc] init];
@@ -51,6 +55,9 @@
                 }
                 
                 [gaussianPyramid addObject:newGaussian];
+                
+                //test
+                printf("pyramid %d finish\n",i*(intervalNum+3)+j+1);
             }
         }
         
@@ -86,9 +93,10 @@ __attribute((ns_returns_retained))
                                                                    Factor:2];
         }
     }
-    else{
+    else{/*
         int index=octave_num*(intervalNum+3)+interval_num-1;
         ImageMatrix *previousMatrix=[gaussianPyramid objectAtIndex:index];
+        
         int filterSize=ceil(6*sigma[interval_num]+1);
         
         if(filterSize>[previousMatrix getHeight])
@@ -100,13 +108,18 @@ __attribute((ns_returns_retained))
         
         output=[Convolution convWithGaussianFast:previousMatrix
                                            sigma:sigma[interval_num] filterSize:filterSize];
+         */
+        ImageMatrix *previousMatrix=[gaussianPyramid lastObject];
+        output=[Filter conv:previousMatrix
+                horizontalFilter:horizontalGaussianFilter[interval_num]
+                  verticalFilter:verticalGaussianFilter[interval_num]];
     }
     return output;
 }
 
 - (void)setSigma
 {
-    double k=pow(2.0,1.0/(double)(intervalNum));
+    float k=pow(2.0,1.0/(float)(intervalNum));
     
     for(int i=1;i<intervalNum+3;i++){
         sigma[i]=sqrt(pow(sigma[0]*pow(k,i),2) - pow(sigma[0]*pow(k,i-1),2));
@@ -129,6 +142,27 @@ __attribute((ns_returns_retained))
     }
 }
 
+- (void)setHorizontalGaussianFilter
+{
+    for(int i=0;i<intervalNum+3;i++){
+        int filterSize=ceil(6*sigma[i]+1);
+        if(!(filterSize%2))
+            filterSize++;
+        horizontalGaussianFilter[i]=[Filter getHorizontalGaussianFilter:sigma[i]
+                                                                  filterSize:filterSize];
+    }
+}
+
+- (void)setVerticalGaussianFilter
+{
+    for(int i=0;i<intervalNum+3;i++){
+        int filterSize=ceil(6*sigma[i]+1);
+        if(!(filterSize%2))
+            filterSize++;
+        verticalGaussianFilter[i]=[Filter getVerticalGaussianFilter:sigma[i]
+                                                              filterSize:filterSize];
+    }
+}
 
 - (int)getOctaveNum
 {

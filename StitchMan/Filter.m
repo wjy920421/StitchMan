@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 wjy. All rights reserved.
 //
 
-#import "Convolution.h"
+#import "Filter.h"
 
 #define PI 3.1415926
 #define EULER 2.718281828
 
-@implementation Convolution
+@implementation Filter
 
 - (void)dealloc
 {
@@ -19,48 +19,50 @@
 }
 
 + (ImageMatrix *)convWithGaussian:(ImageMatrix *)target
-sigma:(double)sigma filterSize:(int)filterSize
+sigma:(float)sigma filterSize:(int)filterSize
 __attribute((ns_returns_retained))
 {
-	return [Convolution conv:target filter:[Convolution getGaussianFilter:sigma
+	return [Filter conv:target filter:[Filter getGaussianFilter:sigma
 															   filterSize:filterSize]];
 }
 
 + (ImageMatrix *)convWithGaussianFast:(ImageMatrix *)target
-sigma:(double)sigma filterSize:(int)filterSize
+sigma:(float)sigma filterSize:(int)filterSize
 __attribute((ns_returns_retained))
 {
     ImageMatrix *hg=[self getHorizontalGaussianFilter:sigma filterSize:filterSize];
     ImageMatrix *vg=[self getVerticalGaussianFilter:sigma filterSize:filterSize];
     
-	return [Convolution conv:target horizontalFilter:hg verticalFilter:vg];
+	return [Filter conv:target horizontalFilter:hg verticalFilter:vg];
 }
 
 + (ImageMatrix *)conv:(ImageMatrix *)target filter:(ImageMatrix *)filter
 __attribute((ns_returns_retained))
 {
-	int targetHeight=[target getHeight];
-	int targetWidth=[target getWidth];
-	int filterHeight=[filter getHeight];
-	int filterWidth=[filter getWidth];
+	int targetHeight=target->imageHeight;
+	int targetWidth=target->imageWidth;
+	int filterHeight=filter->imageHeight;
+	int filterWidth=filter->imageWidth;
 	
     ImageMatrix *result=[[ImageMatrix alloc] initWithHeight:targetHeight Width:targetWidth];
+    float *pFilterImage=filter->pImage;
+    float *pTargetImage=target->pImage;
+    float *pResultImage=result->pImage;
 	
     //if the target is too small, return the target without convolution.
     //if(targetHeight<filterHeight || targetWidth<filterWidth)
     //    return target;
-    
     for(int i=0;i<targetHeight;i++){
         for(int j=0;j<targetWidth;j++){
             //opeation on each pixel
             int targetBaseWidth=j-filterWidth/2;
             int targetBaseHeight=i-filterHeight/2;
-            double sum=0;
+            float sum=0;
             
             for(int m=0;m<filterHeight;m++){
                 for(int n=0;n<filterWidth;n++){
-                    double targetValue;
-                    double filterValue;
+                    float targetValue;
+                    float filterValue;
                     int targetIndexHeight=targetBaseHeight+m;
                     int targetIndexWidth=targetBaseWidth+n;
                     
@@ -74,14 +76,14 @@ __attribute((ns_returns_retained))
                         targetIndexWidth=targetWidth-1;
                     
 					filterValue
-					=[filter getValueAtHeight:m Width:n];
+                    =pFilterImage[m*filter->imageWidth+n];
                     targetValue
-                    =[target getValueAtHeight:targetIndexHeight Width:targetIndexWidth];
+                    =pTargetImage[targetIndexHeight*target->imageWidth+targetIndexWidth];
                     
                     sum=sum+filterValue*targetValue;
                 }
             }
-            [result setValueAtHeight:i Width:j Value:sum];
+            pResultImage[i*targetWidth+j]=sum;
         }
     }
     
@@ -92,24 +94,35 @@ __attribute((ns_returns_retained))
      horizontalFilter:(ImageMatrix *)horizontalFilter verticalFilter:(ImageMatrix *)verticalFilter
 __attribute((ns_returns_retained))
 {
-	int targetHeight=[target getHeight];
-	int targetWidth=[target getWidth];
-	int filterHeight=[verticalFilter getHeight];
-	int filterWidth=[horizontalFilter getWidth];
+	int targetHeight=target->imageHeight;
+	int targetWidth=target->imageWidth;
+	int filterHeight=verticalFilter->imageHeight;
+	int filterWidth=horizontalFilter->imageWidth;
+    
+    float targetValue;
+    float filterValue;
+    int targetIndexHeight;
+    int targetIndexWidth;
 	
-    ImageMatrix *tmp=[[ImageMatrix alloc] initWithHeight:targetHeight Width:targetWidth];
+    //printf("height = %d\n",targetHeight);
+    //printf("width = %d\n",targetWidth);
+    //printf("filter size = %d\n",filterHeight);
+    
+    //ImageMatrix *tmp=[[ImageMatrix alloc] initWithHeight:targetHeight Width:targetWidth];
+    float *pHorizontalFilterImage=horizontalFilter->pImage;
+    float *pVerticalFilterImage=verticalFilter->pImage;
+    float *pTargetImage=target->pImage;
+    float *tmp=malloc(sizeof(float)*targetHeight*targetWidth);
     ImageMatrix *result=[[ImageMatrix alloc] initWithHeight:targetHeight Width:targetWidth];
+    float *pResultImage=result->pImage;
     
     for(int i=0;i<targetHeight;i++){
         for(int j=0;j<targetWidth;j++){
             //opeation on each pixel
-            int targetBaseWidth=j-filterWidth/2;
-            double sum=0;
+            int targetBaseWidth=j-filterWidth>>1;
+            float sum=0;
             for(int m=0;m<filterWidth;m++){
-                    double targetValue;
-                    double filterValue;
-                    int targetIndexHeight=i;
-                    int targetIndexWidth=targetBaseWidth+m;
+                    targetIndexWidth=targetBaseWidth+m;
                     
                     if(targetIndexWidth<0)
                         targetIndexWidth=0;
@@ -117,26 +130,24 @@ __attribute((ns_returns_retained))
                         targetIndexWidth=targetWidth-1;
                     
 					filterValue
-					=[horizontalFilter getValueAtHeight:0 Width:m];
+					=pHorizontalFilterImage[m];
                     targetValue
-                    =[target getValueAtHeight:targetIndexHeight Width:targetIndexWidth];
+                    =pTargetImage[i*targetWidth+targetIndexWidth];
                     
                     sum=sum+filterValue*targetValue;
             }
-            [tmp setValueAtHeight:i Width:j Value:sum];
+            //[tmp setValueAtHeight:i Width:j Value:sum];
+            tmp[i*targetWidth+j]=sum;
         }
     }
     
     for(int i=0;i<targetHeight;i++){
         for(int j=0;j<targetWidth;j++){
             //opeation on each pixel
-            int targetBaseHeight=i-filterHeight/2;
-            double sum=0;
+            int targetBaseHeight=i-filterHeight>>1;
+            float sum=0;
             for(int m=0;m<filterHeight;m++){
-                double targetValue;
-                double filterValue;
-                int targetIndexHeight=targetBaseHeight+m;
-                int targetIndexWidth=j;
+                targetIndexHeight=targetBaseHeight+m;
                 
                 if(targetIndexHeight<0)
                     targetIndexHeight=0;
@@ -144,33 +155,36 @@ __attribute((ns_returns_retained))
                     targetIndexHeight=targetHeight-1;
                 
                 filterValue
-                =[verticalFilter getValueAtHeight:m Width:0];
+                =pVerticalFilterImage[m];
                 targetValue
-                =[tmp getValueAtHeight:targetIndexHeight Width:targetIndexWidth];
+                =tmp[targetIndexHeight*targetWidth+j];
                 
                 sum=sum+filterValue*targetValue;
             }
-            [result setValueAtHeight:i Width:j Value:sum];
+            pResultImage[i*targetWidth+j]=sum;
         }
     }
+    
+    free(tmp);
+    tmp=NULL;
     
     return result;
 }
 
-+ (ImageMatrix *)getGaussianFilter:(double) sigma
++ (ImageMatrix *)getGaussianFilter:(float) sigma
 filterSize:(int)filterSize
 __attribute((ns_returns_retained))
 {
     int x,y;
-    int size = sizeof(double)* filterSize *filterSize;
-    int halfSize=filterSize/2;
-	double value;
-	double sum=0;
-    double *filter = malloc(size);
+    int size = sizeof(float)* filterSize *filterSize;
+    int halfSize=filterSize>>1;
+	float value;
+	float sum=0;
+    float *filter = malloc(size);
 	
     for (x=0; x<filterSize; x++) {
         for (y=0; y<filterSize; y++) {
-            double mid = (pow((x - halfSize),2) + pow((y - halfSize),2))/(2*sigma*sigma);
+            float mid = (pow((x - halfSize),2) + pow((y - halfSize),2))/(2*sigma*sigma);
 			value=(1.0 / (2 * PI * sigma * sigma))* pow(EULER,-mid);
             filter[x * filterSize + y] = value;
 			sum=sum+value;
@@ -191,18 +205,18 @@ __attribute((ns_returns_retained))
     return filterMatrix;
 }
 
-+ (ImageMatrix *)getHorizontalGaussianFilter:(double) sigma
++ (ImageMatrix *)getHorizontalGaussianFilter:(float) sigma
 filterSize:(int)filterSize
 __attribute((ns_returns_retained))
 {
     int x;
     int halfSize=filterSize/2;
-	double value;
-	double sum=0;
-    double filter[30];
+	float value;
+	float sum=0;
+    float filter[100];
 	
     for (x=0; x<filterSize; x++) {
-            double mid = pow((x - halfSize),2)/(2*sigma*sigma);
+            float mid = pow((x - halfSize),2)/(2*sigma*sigma);
 			value=sqrt(1.0 / (2 * PI * sigma * sigma))* pow(EULER,-mid);
             filter[x] = value;
 			sum=sum+value;
@@ -220,18 +234,18 @@ __attribute((ns_returns_retained))
     return filterMatrix;
 }
 
-+ (ImageMatrix *)getVerticalGaussianFilter:(double) sigma
++ (ImageMatrix *)getVerticalGaussianFilter:(float) sigma
 filterSize:(int)filterSize
 __attribute((ns_returns_retained))
 {
     int x;
     int halfSize=filterSize/2;
-	double value;
-	double sum=0;
-    double filter[30];
+	float value;
+	float sum=0;
+    float filter[100];
 	
     for (x=0; x<filterSize; x++) {
-        double mid = pow((x - halfSize),2)/(2*sigma*sigma);
+        float mid = pow((x - halfSize),2)/(2*sigma*sigma);
         value=sqrt(1.0 / (2 * PI * sigma * sigma))* pow(EULER,-mid);
         filter[x] = value;
         sum=sum+value;

@@ -15,7 +15,7 @@
     int y;
     unsigned char descriptor[4][4][8];
     
-    double theta;
+    float theta;
     
 }
 
