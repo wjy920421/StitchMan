@@ -12,7 +12,7 @@
 
 + (ImageMatrix *)applyFFT2D:(ImageMatrix *)im;
 {
-    
+    return nil;
 }
 
 + (ImageMatrix *)applyIFFT2D:(ImageMatrix *)im;
@@ -25,7 +25,7 @@
 
 + (ImageMatrix *)applyFFT1D:(ImageMatrix *)im;
 {
-    
+    return nil;
 }
 
 + (ImageMatrix *)applyIFFT1D:(ImageMatrix *)im;

@@ -57,7 +57,7 @@
                 [gaussianPyramid addObject:newGaussian];
                 
                 //test
-                printf("pyramid %d finish\n",i*(intervalNum+3)+j+1);
+                //printf("pyramid %d finish\n",i*(intervalNum+3)+j+1);
             }
         }
         

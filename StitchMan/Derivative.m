@@ -10,7 +10,7 @@
 
 @implementation Derivative
 
-+ (float *)deriv3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
++ (double *)deriv3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
                        X:(int)x Y:(int)y
 {
     ImageMatrix *mat=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
@@ -20,8 +20,8 @@
     ImageMatrix *prev=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
                                                            Interval:interval_num-1];
     
-    static float deriv[3];
-    float dx,dy,ds;
+    static double deriv[3];
+    double dx,dy,ds;
     int width=mat->imageWidth;
     
     deriv[0]=dx=(mat->pImage[y*width+x+1] - mat->pImage[y*width+x-1])/2.0;
@@ -31,7 +31,7 @@
     return deriv;
 }
 
-+ (float *)hessian3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
++ (double *)hessian3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
                    X:(int)x Y:(int)y
 {
     ImageMatrix *mat=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
@@ -41,7 +41,7 @@
     ImageMatrix *prev=[pyramid getDifferenceOfGaussianMatrixAtOctave:octave_num
                                                             Interval:interval_num-1];
     
-    static float hessian[9];
+    static double hessian[9];
     double v,dxx,dyy,dss,dxy,dxs,dys;
     int width=mat->imageWidth;
     

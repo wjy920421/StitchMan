@@ -68,13 +68,14 @@
 - (id)initWithImageMatrixByDownsampling:(ImageMatrix *)im Factor:(int)factor
 {
     if(self=[super init]){
+        int originalWidth=im->imageWidth;
         imageWidth=[im getWidth]/factor;
         imageHeight=[im getHeight]/factor;
         pImage=malloc(sizeof(float)*imageHeight*imageWidth);
         //bzero(pImage,sizeof(float)*imageHeight*imageWidth);
         for(int i=0;i<imageHeight;i++)
             for(int j=0;j<imageWidth;j++)
-                pImage[i*imageWidth+j]=im->pImage[((i+1)*factor-1)*imageWidth+((j+1)*factor-1)];
+                pImage[i*imageWidth+j]=im->pImage[((i+1)*factor-1)*originalWidth+((j+1)*factor-1)];
         //NSLog(@"init");
     }
     return self;
@@ -87,6 +88,22 @@
         imageHeight=height;
         pImage=malloc(sizeof(float)*imageHeight*imageWidth);
         //bzero(pImage,sizeof(float)*imageHeight*imageWidth);
+        //NSLog(@"init");
+    }
+    return self;
+}
+
+- (id)initWithHeight:(int)height Width:(int)width Value:(float)value
+{
+    if(self=[super init]){
+        imageWidth=width;
+        imageHeight=height;
+        pImage=malloc(sizeof(float)*imageHeight*imageWidth);
+        for(int i=0;i<imageHeight;i++){
+            for(int j=0;j<imageWidth;j++){
+                pImage[i*imageWidth+j]=value;
+            }
+        }
         //NSLog(@"init");
     }
     return self;

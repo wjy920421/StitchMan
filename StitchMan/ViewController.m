@@ -49,10 +49,14 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     image=[info objectForKey:UIImagePickerControllerOriginalImage];
-    self.imageView.image=image;
+    //self.imageView.image=image;
     ImageMatrix *imageMatrix=[ImageConverter UIImage2ImageMatrixY:image];
     //[imageMatrix print];
+    
     SIFT *sift=[[SIFT alloc] initWithImageMatrix:imageMatrix];
+    self.imageView.image=[ImageConverter Luminance2UIImage:[sift originalImage]
+                                                  withMark:[sift output]];
+    
     
     [picker dismissViewControllerAnimated:YES completion:nil];
     

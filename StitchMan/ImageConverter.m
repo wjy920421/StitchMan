@@ -47,7 +47,7 @@ __attribute((ns_returns_retained))
         int j=4*i;
         grayscale[i] = (0.299 * (int)rawData[j] + 0.587 * (int)rawData[j+1] + 0.114 * (int)rawData[j+2]);
         
-        
+        //grayscale[i]=grayscale[i]/255.0;
     }
     
     ImageMatrix * output = [[ImageMatrix alloc] initWithArray:grayscale
@@ -236,6 +236,7 @@ __attribute((ns_returns_retained))
                        componentU:(ImageMatrix *)U
                        componentV:(ImageMatrix *)V
                    componentAlpha:(ImageMatrix *)Alpha
+__attribute((ns_returns_retained))
 {
     int i,j;
     int height = im->imageHeight;
@@ -307,6 +308,60 @@ __attribute((ns_returns_retained))
     
     return resultImage;
 }
+
++ (UIImage *) Luminance2UIImage:(ImageMatrix *)im withMark:(ImageMatrix *)mark
+__attribute((ns_returns_retained))
+{
+    int i,j,threshold=180;
+    int height = im->imageHeight;
+    int width = im->imageWidth;
+    NSUInteger totalPixel = width * height;
+    float *grayscale = malloc(sizeof(float) * height * width);
+    for (i=0; i<height; i++) {
+        for(j=0;j<width;j++){
+            grayscale[i * width + j] = im->pImage[i*im->imageWidth+j];
+            
+        }
+    }
+    unsigned char *rawData = malloc(height * width * 4);
+    for (int i=0; i<totalPixel; i++) {
+        int j = 4*i;
+        if((int)mark->pImage[i]>threshold){
+            rawData[j]=255;
+            rawData[j+1]=0;
+            rawData[j+2]=0;
+            rawData[j+3]=200;
+        }
+        else{
+            rawData[j] = (unsigned char)grayscale[i];
+            rawData[j+1] = (unsigned char)grayscale[i];
+            rawData[j+2] = (unsigned char)grayscale[i];
+            rawData[j+3] = (unsigned char)255;
+        }
+    }
+    
+    // build uiimage
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmapContext = CGBitmapContextCreate(rawData, width, height, 8, 4*width, colorSpace, kCGImageAlphaPremultipliedLast|kCGBitmapByteOrderDefault);
+    CFRelease(colorSpace);
+    CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
+    CGContextRelease(bitmapContext);
+    
+    UIImage *resultImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    
+    //release memory
+    free(rawData);
+    rawData=NULL;
+    free(grayscale);
+    grayscale=NULL;
+    
+    return resultImage;
+    
+    
+    
+}
+
 
 @end
 

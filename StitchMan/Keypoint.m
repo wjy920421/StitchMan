@@ -15,15 +15,30 @@
     if(self=[super init]){
         x=x1;
         y=y1;
-        
     }
     return self;
 }
 
-- (id)initWithX:(int)x Y:(int)y Octave:(int)octave_num Interval:(int)interval_num
+- (id)initWithX:(int)x1 Y:(int)y1 Octave:(int)octave_num1 Interval:(int)interval_num1
 {
     if(self=[super init]){
-        
+        x=x1;
+        y=y1;
+        octave_num=octave_num1;
+        interval_num=interval_num1;
+    }
+    return self;
+}
+
+
+- (id)initWithKeypoint:(Keypoint *)keypoint
+{
+    if(self=[super init]){
+        x=keypoint->x;
+        y=keypoint->y;
+        octave_num=keypoint->octave_num;
+        interval_num=keypoint->interval_num;
+        theta=keypoint->theta;
     }
     return self;
 }

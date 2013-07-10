@@ -13,15 +13,19 @@
     @public
     int x;
     int y;
+    
+    int octave_num;
+    int interval_num;
+    
     unsigned char descriptor[4][4][8];
     
     float theta;
     
 }
 
-- (id)initWithX:(int)x Y:(int)y;
-
 - (id)initWithX:(int)x Y:(int)y Octave:(int)octave_num Interval:(int)interval_num;
+
+- (id)initWithKeypoint:(Keypoint *)keypoint;
 
 - (void)print;
 

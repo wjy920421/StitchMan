@@ -15,6 +15,8 @@
 #import "Filter.h"
 #import "ImageMatrix.h"
 #import "Pyramid.h"
+#import "Derivative.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -66,18 +68,6 @@ int main(int argc, char *argv[])
         finish=clock();
         printf("Total time: %f s",(float)(finish-start)/1000000);
         */
-        float a[30]={
-            1,2,3,4,5,
-            1,2,3,4,5,
-            1,2,3,4,5,
-            1,2,3,4,5,
-            1,2,3,4,5,
-            1,2,3,4,5};
-        ImageMatrix *im=[[ImageMatrix alloc] initWithArray:a Height:6 Width:5];
-        [im print];
-        [im expandWithValue:0 Top:1 Bottom:3 Left:2 Right:4];
-        [im print];
-        
         
         
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));

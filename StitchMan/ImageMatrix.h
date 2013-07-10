@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define PI 3.1415926
+#define EULER 2.718281828
+
 @interface ImageMatrix : NSObject
 {
     @public
@@ -17,6 +20,8 @@
 }
 
 - (id)initWithHeight:(int)imageHeight Width:(int)imageWidth;
+
+- (id)initWithHeight:(int)height Width:(int)width Value:(float)value;
 
 - (id)initWithUIImage:(UIImage *)uiimage;
 

@@ -25,4 +25,8 @@
 
 - (void)detectKeypoints;
 
+- (ImageMatrix *)originalImage;
+
+- (ImageMatrix *)output __attribute((ns_returns_retained));
+
 @end

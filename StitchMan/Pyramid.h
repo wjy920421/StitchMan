@@ -14,6 +14,7 @@
 
 @interface Pyramid : NSObject
 {
+@public
     int octaveNum;
     int intervalNum;
     float sigma[20];

@@ -13,10 +13,10 @@
 
 @interface Derivative : NSObject
 
-+ (float *)deriv3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
++ (double *)deriv3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
                        X:(int)x Y:(int)y;
 
-+ (float *)hessian3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
++ (double *)hessian3D:(Pyramid *)pyramid Octave:(int)octave_num Interval:(int)interval_num
                    X:(int)x Y:(int)y;
 
 @end

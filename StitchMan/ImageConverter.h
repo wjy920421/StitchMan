@@ -22,9 +22,13 @@
 
 + (UIImage *) Luminance2UIImage:(ImageMatrix *)im __attribute((ns_returns_retained));
 
++ (UIImage *) Luminance2UIImage:(ImageMatrix *)im withMark:(ImageMatrix *)mark
+__attribute((ns_returns_retained));
+
 + (UIImage *) ImageMatrix2UIImage:(ImageMatrix *)im
                        componentU:(ImageMatrix *)U
                        componentV:(ImageMatrix *)V
-                   componentAlpha:(ImageMatrix *)Alpha;
+                   componentAlpha:(ImageMatrix *)Alpha
+__attribute((ns_returns_retained));
 
 @end

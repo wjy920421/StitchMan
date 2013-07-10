@@ -8,9 +8,6 @@
 
 #import "Filter.h"
 
-#define PI 3.1415926
-#define EULER 2.718281828
-
 @implementation Filter
 
 - (void)dealloc
@@ -119,7 +116,7 @@ __attribute((ns_returns_retained))
     for(int i=0;i<targetHeight;i++){
         for(int j=0;j<targetWidth;j++){
             //opeation on each pixel
-            int targetBaseWidth=j-filterWidth>>1;
+            int targetBaseWidth=j-filterWidth/2;
             float sum=0;
             for(int m=0;m<filterWidth;m++){
                     targetIndexWidth=targetBaseWidth+m;
@@ -144,7 +141,7 @@ __attribute((ns_returns_retained))
     for(int i=0;i<targetHeight;i++){
         for(int j=0;j<targetWidth;j++){
             //opeation on each pixel
-            int targetBaseHeight=i-filterHeight>>1;
+            int targetBaseHeight=i-filterHeight/2;
             float sum=0;
             for(int m=0;m<filterHeight;m++){
                 targetIndexHeight=targetBaseHeight+m;
@@ -177,7 +174,7 @@ __attribute((ns_returns_retained))
 {
     int x,y;
     int size = sizeof(float)* filterSize *filterSize;
-    int halfSize=filterSize>>1;
+    int halfSize=filterSize/2;
 	float value;
 	float sum=0;
     float *filter = malloc(size);
