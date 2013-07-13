@@ -16,14 +16,15 @@
         keypoints=[[NSMutableArray alloc] init];
         duplicateKeypoints=[[NSMutableArray alloc] init];
         
-        count0=0;
         count1=0;
         pyr=pyramid;
         [self locateKeypoints:pyr];
-        [self calculateOrientations];
-        
         printf("%d local maximum.\n",count1);
-        printf("%d keypoints are detected.\n",count0);
+        printf("%d keypoints are detected.\n",[keypoints count]);
+        [self calculateOrientations];
+        printf("%d keypoints are detected. (modified result)\n",[keypoints count]);
+        [self calculateDescriptors];
+        
     }
     return self;
 }
@@ -62,8 +63,6 @@
                                             Pyramid:pyramid];
                 if(kp!=nil){
                     [keypoints addObject:kp];
-                    //
-                    count0++;
                 }
                 
             }
@@ -111,6 +110,7 @@
             }
         }
     }
+    
     return TRUE;
 }
 
@@ -191,6 +191,8 @@ __attribute((ns_returns_retained))
     Keypoint *newKeypoint=[[Keypoint alloc]
                            initWithX:(int)(((double)x+xc)*(double)(1<<octave_num))
                                    Y:(int)(((double)y+yc)*(double)(1<<octave_num))
+                               X_OCT:x
+                               Y_OCT:y
                               Octave:octave_num
                             Interval:interval_num];
     
@@ -217,18 +219,18 @@ __attribute((ns_returns_retained))
 
 
 
-- (void)calculateOrientationAtKeypoint:(Keypoint *)kp
-                        Pyramid:(Pyramid *)pyramid
+- (void)calculateOrientationAtKeypoint:(Keypoint *)kp Pyramid:(Pyramid *)pyramid
 {
     ImageMatrix *im=[pyramid getGaussianMatrixAtOctave:kp->octave_num Interval:kp->interval_num];
     int width=im->imageWidth;
     int height=im->imageHeight;
-    int x=kp->x;
-    int y=kp->y;
+    int x=kp->x_oct;
+    int y=kp->y_oct;
     int x1,y1;
     double scale=[self getScaleAtOctave:kp->octave_num Interval:kp->interval_num];
-    double sigma=1.5*scale;
-    int radius=(int)(3.0*1.5*scale);
+    double scale_oct=[self getOctaveScaleAtInterval:kp->interval_num];
+    double sigma=1.5*scale_oct;
+    int radius=(int)(3.0*1.5*scale_oct);
     double magnitude,theta;
     double histogram[36];
     
@@ -274,6 +276,137 @@ __attribute((ns_returns_retained))
         }
 }
 
+- (void)calculateDescriptors
+{
+    int length=[keypoints count];
+    for(int i=0;i<length;i++){
+        
+        //test
+        if(i==40){
+            int ggg=0;
+        }
+        
+        Keypoint *kp=[keypoints objectAtIndex:i];
+        [self calculateDescriptorAtKeypoint:kp Pyramid:pyr];
+    }
+}
+
+- (void)calculateDescriptorAtKeypoint:(Keypoint *)kp Pyramid:(Pyramid *)pyramid
+{
+    ImageMatrix *im=[pyramid getDifferenceOfGaussianMatrixAtOctave:kp->octave_num
+                                                          Interval:kp->interval_num];
+    
+    double kp_theta=kp->theta;
+    double magnitude,theta;
+    int x=kp->x_oct;
+    int y=kp->y_oct;
+    int x1,y1;
+    int i,j,k;
+    int i_rot,j_rot;
+    double index_x_f,index_y_f,index_theta_f;
+    int index_x,index_y,index_theta;
+    int index_x_new,index_y_new,index_theta_new;
+    int width=im->imageWidth;
+    int height=im->imageHeight;
+    double w;
+    double scale=[self getScaleAtOctave:kp->octave_num Interval:kp->interval_num];
+    double scale_oct=[self getOctaveScaleAtInterval:kp->interval_num];
+    int radius=round(3*scale_oct*sqrt(2)*(4+1)/2);
+    
+    //clear descriptor
+    for(i=0;i<4;i++)
+        for(j=0;j<4;j++)
+            for(k=0;k<8;k++)
+                kp->descriptor[i][j][k]=0;
+    
+    //calculate descriptor
+    for(i=-radius;i<radius;i++){
+        for(j=-radius;j<radius;j++){
+            x1=x+j;
+            y1=y+i;
+            if(x1>0 && x1<width-1 && y1>0 && y1<height-1){
+                //calculate coordinate in theta
+                j_rot=j*cos(kp_theta) - i*sin(kp_theta);
+                i_rot=j*sin(kp_theta) + i*cos(kp_theta);
+                
+                index_x_f=j_rot/(3*scale_oct)+2-0.5;
+                index_y_f=i_rot/(3*scale_oct)+2-0.5;
+                index_x=floor(index_x_f);
+                index_y=floor(index_y_f);
+                
+                //if the point is in the 5x5 area, jump in. 
+                if(index_x_f>-1.0 && index_x_f<4.0 && index_y_f>-1.0 && index_y_f<4.0){
+                    //calculate magnitude and orientation
+                    double dx=im->pImage[y1*width+x1+1]-im->pImage[y1*width+x1-1];
+                    double dy=im->pImage[(y1+1)*width+x1]-im->pImage[(y1-1)*width+x1];
+                    magnitude=sqrt(dx*dx+dy*dy);
+                    theta=atan2(-dy,dx)+PI;
+                    
+                    index_theta_f=theta/(2.0*PI/8);
+                    if(index_theta_f>=8.0) index_theta_f=0.0;
+                    index_theta=floor(index_theta_f);
+                    
+                    //calculate magnitude with gaussian
+                    w=magnitude*exp(-(i_rot*i_rot+j_rot*j_rot)/(2.0*0.5*0.5*4*4));
+                    
+                    //interpolation
+                    for(int ii=0;ii<=1;ii++){
+                        index_y_new=index_y+ii;
+                        if(index_y_new>=0 && index_y_new<4){
+                            for(int jj=0;jj<=1;jj++){
+                                index_x_new=index_x+jj;
+                                if(index_x_new>=0 && index_x_new<4){
+                                    for(int kk=0;kk<=1;kk++){
+                                        index_theta_new=index_theta+kk;
+                                        if(index_theta_new>=8)
+                                            index_theta_new=0;
+                                        
+                                        //calculate coefficients
+                                        double co1,co2,co3;
+                                        
+                                        if(ii==0)
+                                            co1=1.0-(index_y_f-index_y);
+                                        else
+                                            co1=index_y_f-index_y;
+                                        if(jj==0)
+                                            co2=1.0-(index_x_f-index_x);
+                                        else
+                                            co2=index_x_f-index_x;
+                                        if(kk==0)
+                                            co3=1.0-(index_theta_f-index_theta);
+                                        else
+                                            co3=index_theta_f-index_theta;
+                                        
+                                        kp->descriptor[index_y_new][index_x_new][index_theta_new]
+                                        +=w*co1*co2*co3;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    //interpolation ends
+                }
+            }
+        }
+    }
+    
+    //normalize descriptor
+    [self normalizeDescriptor:kp];
+}
+
+- (void)normalizeDescriptor:(Keypoint *)kp
+{
+    double sum=0;
+    for(int i=0;i<4;i++)
+        for(int j=0;j<4;j++)
+            for(int k=0;k<8;k++)
+                sum+=kp->descriptor[i][j][k];
+    
+    for(int i=0;i<4;i++)
+        for(int j=0;j<4;j++)
+            for(int k=0;k<8;k++)
+                kp->descriptor[i][j][k]/=sum;
+}
 
 
 
@@ -289,7 +422,33 @@ __attribute((ns_returns_retained))
 
 - (double)getScaleAtOctave:(int)octave_num Interval:(int)interval_num;
 {
-    return pyr->sigma[0]*pow(2.0,octave_num+(double)interval_num/pyr->intervalNum);
+    return pyr->sigma[0]*pow(2.0,octave_num+(double)interval_num/(double)pyr->intervalNum);
+}
+
+- (double)getOctaveScaleAtInterval:(int)interval_num
+{
+    return pyr->sigma[0]*pow(2.0,(double)interval_num/(double)pyr->intervalNum);
+}
+
+
+
+- (void)output
+{
+    FILE *fp=fopen("/Users/wjy/Desktop/output/keypoints.txt", "w");
+    
+    int length=[keypoints count];
+    for(int l=0;l<length;l++){
+        Keypoint *kp=[keypoints objectAtIndex:l];
+        fprintf(fp,"Keypoint: %d\n",l+1);
+        fprintf(fp,"Position: %d %d\n",kp->y,kp->x);
+        for(int i=0;i<4;i++)
+            for(int j=0;j<4;j++)
+                for(int k=0;k<8;k++)
+                    fprintf(fp,"%f ",kp->descriptor[i][j][k]);
+        fprintf(fp,"\n");
+    }
+    
+    fclose(fp);
 }
 
 @end

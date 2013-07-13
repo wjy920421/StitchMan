@@ -10,20 +10,14 @@
 
 @implementation Keypoint
 
-- (id)initWithX:(int)x1 Y:(int)y1
+- (id)initWithX:(int)x1 Y:(int)y1 X_OCT:(int)x_oct1 Y_OCT:(int)y_oct1
+         Octave:(int)octave_num1 Interval:(int)interval_num1
 {
     if(self=[super init]){
         x=x1;
         y=y1;
-    }
-    return self;
-}
-
-- (id)initWithX:(int)x1 Y:(int)y1 Octave:(int)octave_num1 Interval:(int)interval_num1
-{
-    if(self=[super init]){
-        x=x1;
-        y=y1;
+        x_oct=x_oct1;
+        y_oct=y_oct1;
         octave_num=octave_num1;
         interval_num=interval_num1;
     }

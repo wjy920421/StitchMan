@@ -22,7 +22,6 @@
     Pyramid *pyr;
     NSMutableArray *keypoints;
     NSMutableArray *duplicateKeypoints;
-    int count0;
     int count1;
 }
 
@@ -31,5 +30,7 @@
 //- (Keypoint *)getKeypointAtIndex:(int)index __attribute((ns_returns_retained));
 
 - (int)getLength;
+
+- (void)output;
 
 @end

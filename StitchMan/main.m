@@ -21,6 +21,7 @@
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
+        
          /*
          float input[120]={  12,34,56,78,90,11,12,34,56,78,90,11,
              98,76,54,32,10,98,76,54,32,10,45,82,
