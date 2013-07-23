@@ -14,6 +14,7 @@
 
 @interface SIFT : NSObject
 {
+    @public
     ImageMatrix *imageMatrix;
     Pyramid *pyramid;
     KeypointVector *keypointVector;

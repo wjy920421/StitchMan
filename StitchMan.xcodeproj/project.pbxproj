@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570EEBA217912952006B4205 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 570EEBA117912952006B4205 /* Match.m */; };
 		57226F79178A2A1300189CE5 /* FFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F78178A2A1300189CE5 /* FFT.m */; };
 		57226F7C178A312600189CE5 /* Complex.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F7B178A312600189CE5 /* Complex.m */; };
 		57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F7E178A5B6300189CE5 /* ComplexMatrix.m */; };
@@ -33,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		570EEBA017912952006B4205 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		570EEBA117912952006B4205 /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		57226F77178A2A1300189CE5 /* FFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FFT.h; sourceTree = "<group>"; };
 		57226F78178A2A1300189CE5 /* FFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FFT.m; sourceTree = "<group>"; };
 		57226F7A178A312600189CE5 /* Complex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Complex.h; sourceTree = "<group>"; };
@@ -88,6 +91,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570EEB9F1791293A006B4205 /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				570EEBA017912952006B4205 /* Match.h */,
+				570EEBA117912952006B4205 /* Match.m */,
+			);
+			name = Match;
+			sourceTree = "<group>";
+		};
 		57770A3D1787D59A00A22147 = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 		57770A4F1787D59A00A22147 /* StitchMan */ = {
 			isa = PBXGroup;
 			children = (
+				570EEB9F1791293A006B4205 /* Match */,
 				57770A6D1787D5B500A22147 /* SIFT */,
 				57770A581787D59A00A22147 /* AppDelegate.h */,
 				57770A591787D59A00A22147 /* AppDelegate.m */,
@@ -254,6 +267,7 @@
 				57226F7C178A312600189CE5 /* Complex.m in Sources */,
 				57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */,
 				576ADD88178BB47300EB28CE /* Derivative.m in Sources */,
+				570EEBA217912952006B4205 /* Match.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

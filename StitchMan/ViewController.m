@@ -57,7 +57,6 @@
     self.imageView.image=[ImageConverter Luminance2UIImage:[sift originalImage]
                                                   withMark:[sift output]];
     
-    
     [picker dismissViewControllerAnimated:YES completion:nil];
     
     NSLog(@"Image size: %.0f x %.0f",image.size.width,image.size.height);

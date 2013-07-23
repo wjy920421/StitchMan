@@ -13,7 +13,7 @@
 #import "Derivative.h"
 
 #define INTERPOLATION_ITERATION 5 //default 5
-#define CONTRAST_THRESHOLD 0.04*255 //default 0.04*255
+#define CONTRAST_THRESHOLD 0.04*255.0 //default 0.04*255
 #define R 10 //default 10
 
 @interface KeypointVector : NSObject

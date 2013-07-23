@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SIFT.h"
+#import "Match.h"
 
 @interface ViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
