@@ -29,7 +29,7 @@
         finish=clock();
         printf("%f seconds used to detect keypoints\n",(float)(finish-start)/1000000);
         
-        [keypointVector output];
+        //[keypointVector output];
     }
     return self;
 }

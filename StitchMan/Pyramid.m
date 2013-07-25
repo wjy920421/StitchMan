@@ -145,7 +145,7 @@ __attribute((ns_returns_retained))
 - (void)setHorizontalGaussianFilter
 {
     for(int i=0;i<intervalNum+3;i++){
-        int filterSize=ceil(6*sigma[i]+1);
+        int filterSize=ceil(6*sigma[i]-1);
         if(!(filterSize%2))
             filterSize++;
         horizontalGaussianFilter[i]=[Filter getHorizontalGaussianFilter:sigma[i]
@@ -156,7 +156,7 @@ __attribute((ns_returns_retained))
 - (void)setVerticalGaussianFilter
 {
     for(int i=0;i<intervalNum+3;i++){
-        int filterSize=ceil(6*sigma[i]+1);
+        int filterSize=ceil(6*sigma[i]-1);
         if(!(filterSize%2))
             filterSize++;
         verticalGaussianFilter[i]=[Filter getVerticalGaussianFilter:sigma[i]
