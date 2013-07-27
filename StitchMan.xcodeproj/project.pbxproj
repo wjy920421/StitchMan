@@ -13,6 +13,13 @@
 		57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57226F7E178A5B6300189CE5 /* ComplexMatrix.m */; };
 		572E04311788D315001FAFCF /* KeypointVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E04301788D315001FAFCF /* KeypointVector.m */; };
 		572E043417890ED7001FAFCF /* SIFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 572E043317890ED7001FAFCF /* SIFT.m */; };
+		573223D317A33C0D00671CAA /* StitchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 573223D217A33C0D00671CAA /* StitchViewController.m */; };
+		573223D717A33C6000671CAA /* StitchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 573223D617A33C6000671CAA /* StitchView.xib */; };
+		573223DF17A35D9600671CAA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 573223DD17A35D8600671CAA /* QuartzCore.framework */; };
+		573223E817A36A2700671CAA /* lena512color.png in Resources */ = {isa = PBXBuildFile; fileRef = 573223E717A36A2700671CAA /* lena512color.png */; };
+		573223EA17A36B5500671CAA /* album.png in Resources */ = {isa = PBXBuildFile; fileRef = 573223E917A36B5500671CAA /* album.png */; };
+		575FCC1017A463AA00747517 /* GaussianElimination.m in Sources */ = {isa = PBXBuildFile; fileRef = 575FCC0F17A463AA00747517 /* GaussianElimination.m */; };
+		575FCC1417A46A5500747517 /* Homography.m in Sources */ = {isa = PBXBuildFile; fileRef = 575FCC1317A46A5500747517 /* Homography.m */; };
 		576ADD88178BB47300EB28CE /* Derivative.m in Sources */ = {isa = PBXBuildFile; fileRef = 576ADD87178BB47300EB28CE /* Derivative.m */; };
 		57770A4A1787D59A00A22147 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A491787D59A00A22147 /* UIKit.framework */; };
 		57770A4C1787D59A00A22147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57770A4B1787D59A00A22147 /* Foundation.framework */; };
@@ -24,13 +31,12 @@
 		57770A5E1787D59A00A22147 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57770A5D1787D59A00A22147 /* Default@2x.png */; };
 		57770A601787D59A00A22147 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 57770A5F1787D59A00A22147 /* Default-568h@2x.png */; };
 		57770A631787D59A00A22147 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A621787D59A00A22147 /* ViewController.m */; };
-		57770A661787D59A00A22147 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57770A641787D59A00A22147 /* ViewController.xib */; };
+		57770A661787D59A00A22147 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57770A641787D59A00A22147 /* MainView.xib */; };
 		57770A9B1787D68D00A22147 /* ImageMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9A1787D68D00A22147 /* ImageMatrix.m */; };
 		57770A9E1787D6A700A22147 /* ImageConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770A9D1787D6A700A22147 /* ImageConverter.m */; };
 		57770AA11787D6BE00A22147 /* Pyramid.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA01787D6BE00A22147 /* Pyramid.m */; };
 		57770AA41787D6D400A22147 /* Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 57770AA31787D6D400A22147 /* Filter.m */; };
 		57CC59EE1787E3400033B048 /* Keypoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 57CC59ED1787E3400033B048 /* Keypoint.m */; };
-		57CC59F21787FF800033B048 /* lena512color.png in Resources */ = {isa = PBXBuildFile; fileRef = 57CC59EF1787FE0D0033B048 /* lena512color.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +52,17 @@
 		572E04301788D315001FAFCF /* KeypointVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeypointVector.m; sourceTree = "<group>"; };
 		572E043217890ED7001FAFCF /* SIFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIFT.h; sourceTree = "<group>"; };
 		572E043317890ED7001FAFCF /* SIFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFT.m; sourceTree = "<group>"; };
+		573223D117A33C0D00671CAA /* StitchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StitchViewController.h; sourceTree = "<group>"; };
+		573223D217A33C0D00671CAA /* StitchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StitchViewController.m; sourceTree = "<group>"; };
+		573223D617A33C6000671CAA /* StitchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StitchView.xib; sourceTree = "<group>"; };
+		573223DD17A35D8600671CAA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		573223E317A369CF00671CAA /* lena512color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lena512color.png; path = resources/lena512color.png; sourceTree = "<group>"; };
+		573223E717A36A2700671CAA /* lena512color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lena512color.png; sourceTree = "<group>"; };
+		573223E917A36B5500671CAA /* album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = album.png; path = resources/album.png; sourceTree = "<group>"; };
+		575FCC0E17A463AA00747517 /* GaussianElimination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaussianElimination.h; sourceTree = "<group>"; };
+		575FCC0F17A463AA00747517 /* GaussianElimination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GaussianElimination.m; sourceTree = "<group>"; };
+		575FCC1217A46A5500747517 /* Homography.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Homography.h; sourceTree = "<group>"; };
+		575FCC1317A46A5500747517 /* Homography.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Homography.m; sourceTree = "<group>"; };
 		576ADD86178BB47300EB28CE /* Derivative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Derivative.h; sourceTree = "<group>"; };
 		576ADD87178BB47300EB28CE /* Derivative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Derivative.m; sourceTree = "<group>"; };
 		57770A461787D59A00A22147 /* StitchMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StitchMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +80,7 @@
 		57770A5F1787D59A00A22147 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		57770A611787D59A00A22147 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		57770A621787D59A00A22147 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		57770A651787D59A00A22147 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		57770A651787D59A00A22147 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainView.xib; sourceTree = "<group>"; };
 		57770A991787D68D00A22147 /* ImageMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageMatrix.h; sourceTree = "<group>"; };
 		57770A9A1787D68D00A22147 /* ImageMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageMatrix.m; sourceTree = "<group>"; };
 		57770A9C1787D6A700A22147 /* ImageConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageConverter.h; sourceTree = "<group>"; };
@@ -74,7 +91,6 @@
 		57770AA31787D6D400A22147 /* Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filter.m; sourceTree = "<group>"; };
 		57CC59EC1787E3400033B048 /* Keypoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keypoint.h; sourceTree = "<group>"; };
 		57CC59ED1787E3400033B048 /* Keypoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keypoint.m; sourceTree = "<group>"; };
-		57CC59EF1787FE0D0033B048 /* lena512color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lena512color.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +101,7 @@
 				57770A4A1787D59A00A22147 /* UIKit.framework in Frameworks */,
 				57770A4C1787D59A00A22147 /* Foundation.framework in Frameworks */,
 				57770A4E1787D59A00A22147 /* CoreGraphics.framework in Frameworks */,
+				573223DF17A35D9600671CAA /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,10 +117,45 @@
 			name = Match;
 			sourceTree = "<group>";
 		};
+		573223E617A369D600671CAA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				573223E917A36B5500671CAA /* album.png */,
+				573223E317A369CF00671CAA /* lena512color.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		575FCC0D17A4632F00747517 /* Maths */ = {
+			isa = PBXGroup;
+			children = (
+				576ADD86178BB47300EB28CE /* Derivative.h */,
+				576ADD87178BB47300EB28CE /* Derivative.m */,
+				57226F77178A2A1300189CE5 /* FFT.h */,
+				57226F78178A2A1300189CE5 /* FFT.m */,
+				57226F7A178A312600189CE5 /* Complex.h */,
+				57226F7B178A312600189CE5 /* Complex.m */,
+				57226F7D178A5B6300189CE5 /* ComplexMatrix.h */,
+				57226F7E178A5B6300189CE5 /* ComplexMatrix.m */,
+				575FCC0E17A463AA00747517 /* GaussianElimination.h */,
+				575FCC0F17A463AA00747517 /* GaussianElimination.m */,
+			);
+			name = Maths;
+			sourceTree = "<group>";
+		};
+		575FCC1117A4653900747517 /* Stitching */ = {
+			isa = PBXGroup;
+			children = (
+				575FCC1217A46A5500747517 /* Homography.h */,
+				575FCC1317A46A5500747517 /* Homography.m */,
+			);
+			name = Stitching;
+			sourceTree = "<group>";
+		};
 		57770A3D1787D59A00A22147 = {
 			isa = PBXGroup;
 			children = (
-				57CC59EF1787FE0D0033B048 /* lena512color.png */,
+				573223E717A36A2700671CAA /* lena512color.png */,
 				57770A4F1787D59A00A22147 /* StitchMan */,
 				57770A481787D59A00A22147 /* Frameworks */,
 				57770A471787D59A00A22147 /* Products */,
@@ -121,6 +173,7 @@
 		57770A481787D59A00A22147 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				573223DD17A35D8600671CAA /* QuartzCore.framework */,
 				57770A491787D59A00A22147 /* UIKit.framework */,
 				57770A4B1787D59A00A22147 /* Foundation.framework */,
 				57770A4D1787D59A00A22147 /* CoreGraphics.framework */,
@@ -131,14 +184,20 @@
 		57770A4F1787D59A00A22147 /* StitchMan */ = {
 			isa = PBXGroup;
 			children = (
+				575FCC1117A4653900747517 /* Stitching */,
+				575FCC0D17A4632F00747517 /* Maths */,
 				570EEB9F1791293A006B4205 /* Match */,
 				57770A6D1787D5B500A22147 /* SIFT */,
 				57770A581787D59A00A22147 /* AppDelegate.h */,
 				57770A591787D59A00A22147 /* AppDelegate.m */,
 				57770A611787D59A00A22147 /* ViewController.h */,
 				57770A621787D59A00A22147 /* ViewController.m */,
-				57770A641787D59A00A22147 /* ViewController.xib */,
+				573223D117A33C0D00671CAA /* StitchViewController.h */,
+				573223D217A33C0D00671CAA /* StitchViewController.m */,
+				57770A641787D59A00A22147 /* MainView.xib */,
+				573223D617A33C6000671CAA /* StitchView.xib */,
 				57770A501787D59A00A22147 /* Supporting Files */,
+				573223E617A369D600671CAA /* Resources */,
 			);
 			path = StitchMan;
 			sourceTree = "<group>";
@@ -174,14 +233,6 @@
 				572E04301788D315001FAFCF /* KeypointVector.m */,
 				572E043217890ED7001FAFCF /* SIFT.h */,
 				572E043317890ED7001FAFCF /* SIFT.m */,
-				57226F77178A2A1300189CE5 /* FFT.h */,
-				57226F78178A2A1300189CE5 /* FFT.m */,
-				57226F7A178A312600189CE5 /* Complex.h */,
-				57226F7B178A312600189CE5 /* Complex.m */,
-				57226F7D178A5B6300189CE5 /* ComplexMatrix.h */,
-				57226F7E178A5B6300189CE5 /* ComplexMatrix.m */,
-				576ADD86178BB47300EB28CE /* Derivative.h */,
-				576ADD87178BB47300EB28CE /* Derivative.m */,
 			);
 			name = SIFT;
 			sourceTree = "<group>";
@@ -241,8 +292,10 @@
 				57770A5C1787D59A00A22147 /* Default.png in Resources */,
 				57770A5E1787D59A00A22147 /* Default@2x.png in Resources */,
 				57770A601787D59A00A22147 /* Default-568h@2x.png in Resources */,
-				57770A661787D59A00A22147 /* ViewController.xib in Resources */,
-				57CC59F21787FF800033B048 /* lena512color.png in Resources */,
+				57770A661787D59A00A22147 /* MainView.xib in Resources */,
+				573223D717A33C6000671CAA /* StitchView.xib in Resources */,
+				573223E817A36A2700671CAA /* lena512color.png in Resources */,
+				573223EA17A36B5500671CAA /* album.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +321,9 @@
 				57226F7F178A5B6300189CE5 /* ComplexMatrix.m in Sources */,
 				576ADD88178BB47300EB28CE /* Derivative.m in Sources */,
 				570EEBA217912952006B4205 /* Match.m in Sources */,
+				573223D317A33C0D00671CAA /* StitchViewController.m in Sources */,
+				575FCC1017A463AA00747517 /* GaussianElimination.m in Sources */,
+				575FCC1417A46A5500747517 /* Homography.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,12 +338,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		57770A641787D59A00A22147 /* ViewController.xib */ = {
+		57770A641787D59A00A22147 /* MainView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				57770A651787D59A00A22147 /* en */,
 			);
-			name = ViewController.xib;
+			name = MainView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
