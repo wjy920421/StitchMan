@@ -242,7 +242,7 @@ __attribute((ns_returns_retained))
     int x=round(kp->x_oct);
     int y=round(kp->y_oct);
     int x1,y1;
-    double scale=[self getScaleOfKeypoint:kp];
+    //double scale=[self getScaleOfKeypoint:kp];
     double scale_oct=[self getOctaveScaleOfKeypoint:kp];
     double sigma=1.5*scale_oct;
     int radius=(int)(3.0*1.5*scale_oct);
@@ -354,7 +354,7 @@ __attribute((ns_returns_retained))
     int width=im->imageWidth;
     int height=im->imageHeight;
     double w;
-    double scale=[self getScaleOfKeypoint:kp];
+    //double scale=[self getScaleOfKeypoint:kp];
     double scale_oct=[self getOctaveScaleOfKeypoint:kp];
     int radius=round(3*scale_oct*sqrt(2)*(4+1)/2);
     

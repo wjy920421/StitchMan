@@ -12,15 +12,16 @@
 
 @interface Match : NSObject
 {
+    @public
     ImageMatrix *imageMatrix1;
     ImageMatrix *imageMatrix2;
     
     KeypointVector *keypointVector1;
     KeypointVector *keypointVector2;
     
-    int *match;
     int size;
-    int match_count;
+    NSMutableArray *matchVector1;
+    NSMutableArray *matchVector2;
     
     UIImage *output;
 }

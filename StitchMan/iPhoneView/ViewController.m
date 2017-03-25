@@ -23,9 +23,10 @@
 
 - (id)init
 {
-    self=[super init];
-    //imageView=[[UIImageView alloc] init];
-    
+    if(self=[super init]){
+        image1FeaturesDetected=FALSE;
+        image2FeaturesDetected=FALSE;
+    }
     return self;
 }
 
@@ -62,8 +63,48 @@
     stitchViewController->image[1]=image[1];
 }
 
+- (IBAction)detectFeatures
+{
+    if(!image1FeaturesDetected && image[0]!=nil){
+        ImageMatrix *im=[ImageConverter UIImage2Luminance:image[0]];
+        SIFT *sift=[[SIFT alloc] initWithImageMatrix:im];
+        self.imageView1.image=[ImageConverter Luminance2UIImage:[sift originalImage]
+                                                       withMark:[sift output]];
+        image1FeaturesDetected=TRUE;
+    }
+    if(!image2FeaturesDetected && image[1]!=nil){
+        ImageMatrix *im=[ImageConverter UIImage2Luminance:image[1]];
+        SIFT *sift=[[SIFT alloc] initWithImageMatrix:im];
+        self.imageView2.image=[ImageConverter Luminance2UIImage:[sift originalImage]
+                                                       withMark:[sift output]];
+        image2FeaturesDetected=TRUE;
+    }
+}
+
+-(IBAction)match
+{
+    if(image[0]!=nil && image[1]!=nil){
+        /*
+        CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
+        CGContextRef context=UIGraphicsGetCurrentContext();
+        
+        CGContextSetStrokeColorWithColor(context, [[UIColor redColor] CGColor]);
+        CGContextMoveToPoint(context,100,100);
+        CGContextAddLineToPoint(context,500,500);
+        CGContextStrokePath(context);
+        
+        CFRelease(colorSpace);
+        CGContextRelease(context);
+        */
+    }
+}
+
+
 - (IBAction)openImage
 {
+    if(image[0]!=nil && image[1]!=nil)
+        return;
+    
     if([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypePhotoLibrary]){
         UIImagePickerController *picker=[[UIImagePickerController alloc] init];
         picker.delegate=self;
@@ -74,18 +115,23 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    image[0]=[info objectForKey:UIImagePickerControllerOriginalImage];
-    //self.imageView.image=image;
+    if(image[0]==nil){
+        image[0]=[info objectForKey:UIImagePickerControllerOriginalImage];
+        self.imageView1.image=image[0];
+    }
+    else{
+        image[1]=[info objectForKey:UIImagePickerControllerOriginalImage];
+        self.imageView2.image=image[1];
+    }
+    /*
     ImageMatrix *imageMatrix=[ImageConverter UIImage2ImageMatrixY:image[0]];
-    //[imageMatrix print];
-    
     SIFT *sift=[[SIFT alloc] initWithImageMatrix:imageMatrix];
     self.imageView1.image=[ImageConverter Luminance2UIImage:[sift originalImage]
                                                   withMark:[sift output]];
-    
+    */
     [picker dismissViewControllerAnimated:YES completion:nil];
     
-    NSLog(@"Image size: %.0f x %.0f",image[0].size.width,image[0].size.height);
+    //NSLog(@"Image size: %.0f x %.0f",image[0].size.width,image[0].size.height);
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker

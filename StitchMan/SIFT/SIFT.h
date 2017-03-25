@@ -30,4 +30,6 @@
 
 - (ImageMatrix *)output __attribute((ns_returns_retained));
 
+- (UIImage *)outputUIImage;
+
 @end

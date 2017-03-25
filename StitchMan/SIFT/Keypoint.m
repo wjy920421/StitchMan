@@ -43,7 +43,7 @@
 
 - (void)print
 {
-    printf("Keypoint at: %d %d\n",y,x);
+    printf("Keypoint at: %.2f %.2f\n",y,x);
 }
 
 @end

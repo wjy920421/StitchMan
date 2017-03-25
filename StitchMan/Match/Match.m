@@ -10,13 +10,6 @@
 
 @implementation Match
 
-- (void)dealloc
-{
-    if(match!=NULL)
-        free(match);
-    match=NULL;
-}
-
 - (id)initWithSIFT1:(SIFT *)s1 SIFT2:(SIFT *)s2
 {
     if(self=[super init]){
@@ -40,10 +33,11 @@
     Keypoint *kp1,*kp2;
     
     //size=(length1>=length2)?length2:length1;
-    size=length1;
-    match_count=0;
-    if(match!=NULL) free(match);
-    match=malloc(sizeof(int)*size);
+    size=0;
+    
+    //build match vectors
+    matchVector1=[[NSMutableArray alloc] init];
+    matchVector2=[[NSMutableArray alloc] init];
     
     for(int i=0;i<length1;i++){
         kp1=[keypointVector1->keypoints objectAtIndex:i];
@@ -63,14 +57,14 @@
             }
         }
         if(dist1<0.36*dist2){
-            match[i]=index;
-            match_count++;
-        }
-        else{
-            match[i]=-1;
+            size++;
+            
+            [matchVector1 addObject:kp1];
+            [matchVector2 addObject:[keypointVector2->keypoints objectAtIndex:index]];
         }
     }
-    printf("%d matches are found.\n",match_count);
+    
+    printf("%d matches are found.\n",size);
 }
 
 - (double)euclideanDistanceBetweenKeypoint1:(Keypoint *)kp1 Keypoint2:(Keypoint *)kp2
@@ -94,26 +88,32 @@
     int space=50;
     int height = (height1>=height2)?height1:height2;
     int width = width1 + width2 +space;
-    NSUInteger totalPixel = width * height;
     float *mat = malloc(sizeof(float) * height * width);
+    unsigned char *rawData=malloc(height * width * 4);
     
     for (i=0; i<height; i++) {
         for(j=0;j<width;j++){
-            if(i<height1 && j<width1)
-                mat[i*width + j]=imageMatrix1->pImage[i*imageMatrix1->imageWidth+j];
-            else if(i<height2 && j>=width-width2)
-                mat[i*width + j]=imageMatrix2->pImage[i*imageMatrix2->imageWidth+j-width1-space];
-            else
-                mat[i*width + j]=255;
+            int index=i*width+j;
+            
+            if(i<height1 && j<width1){
+                rawData[4*index]=(unsigned char)imageMatrix1->pImage[i*imageMatrix1->imageWidth+j];
+                rawData[4*index+1]=(unsigned char)imageMatrix1->pImage[i*imageMatrix1->imageWidth+j];
+                rawData[4*index+2]=(unsigned char)imageMatrix1->pImage[i*imageMatrix1->imageWidth+j];
+                rawData[4*index+3]=(unsigned char)255;
+            }
+            else if(i<height2 && j>=width-width2){
+                rawData[4*index]=(unsigned char)imageMatrix2->pImage[i*imageMatrix2->imageWidth+j-width1-space];
+                rawData[4*index+1]=(unsigned char)imageMatrix2->pImage[i*imageMatrix2->imageWidth+j-width1-space];
+                rawData[4*index+2]=(unsigned char)imageMatrix2->pImage[i*imageMatrix2->imageWidth+j-width1-space];
+                rawData[4*index+3]=255;
+            }
+            else{
+                rawData[4*index]=0;
+                rawData[4*index+1]=0;
+                rawData[4*index+2]=0;
+                rawData[4*index+3]=0;
+            }
         }
-    }
-    unsigned char *rawData=malloc(height * width * 4);
-    for (int i=0;i<totalPixel;i++) {
-        int j=4*i;
-        rawData[j]=(unsigned char)mat[i];
-        rawData[j+1]=(unsigned char)mat[i];
-        rawData[j+2]=(unsigned char)mat[i];
-        rawData[j+3]=(unsigned char)255;
     }
     
     // build uiimage
@@ -125,9 +125,8 @@
     
     //draw matches
     for(int i=0;i<size;i++){
-        if(match[i]>=0){
-            Keypoint *kp1=[keypointVector1->keypoints objectAtIndex:i];
-            Keypoint *kp2=[keypointVector2->keypoints objectAtIndex:match[i]];
+            Keypoint *kp1=[matchVector1 objectAtIndex:i];
+            Keypoint *kp2=[matchVector2 objectAtIndex:i];
             
             CGFloat x1=kp1->x;
             CGFloat y1=height-1-kp1->y;
@@ -135,7 +134,6 @@
             CGFloat y2=height-1-kp2->y;
             CGContextMoveToPoint(bitmapContext,x1,y1);
             CGContextAddLineToPoint(bitmapContext,x2,y2);
-        }
     }
     
     CGContextStrokePath(bitmapContext);

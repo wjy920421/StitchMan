@@ -83,4 +83,60 @@
     return output;
 }
 
+- (UIImage *)outputUIImage
+{
+    int height=imageMatrix->imageHeight;
+    int width=imageMatrix->imageWidth;
+    unsigned char *rawData=malloc(sizeof(unsigned char)*4*height*width);
+    
+    for (int i=0; i<height; i++) {
+        for(int j=0;j<width;j++){
+            int index=i*width+j;
+            if(imageMatrix->pImage[index]>=0){
+                rawData[4*index]=imageMatrix->pImage[index];
+                rawData[4*index+1]=imageMatrix->pImage[index];
+                rawData[4*index+2]=imageMatrix->pImage[index];
+                rawData[4*index+3]=255;
+            }
+            else{
+                rawData[4*index]=0;
+                rawData[4*index+1]=0;
+                rawData[4*index+2]=0;
+                rawData[4*index+3]=0;
+            }
+        }
+    }
+    // build uiimage
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef bitmapContext = CGBitmapContextCreate(rawData, width, height, 8, 4*width, colorSpace, kCGImageAlphaPremultipliedLast|kCGBitmapByteOrderDefault);
+    
+    CGContextSetLineWidth(bitmapContext, 2.5);
+    CGContextSetStrokeColorWithColor(bitmapContext, [[UIColor redColor] CGColor]);
+    
+    //draw features
+    int size=keypointVector->keypoints.count;
+    for(int i=0;i<size;i++){
+        Keypoint *kp=[keypointVector->keypoints objectAtIndex:i];\
+        
+        CGFloat x=kp->x;
+        CGFloat y=height-1-kp->y;
+        CGContextMoveToPoint(bitmapContext,x-5,y-5);
+        CGContextAddLineToPoint(bitmapContext,x+5,y+5);
+        CGContextMoveToPoint(bitmapContext,x-5,y+5);
+        CGContextAddLineToPoint(bitmapContext,x+5,y-5);
+    }
+    
+    CGContextStrokePath(bitmapContext);
+    
+    CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
+    UIImage *output = [UIImage imageWithCGImage:cgImage];
+    
+    
+    CFRelease(colorSpace);
+    CGContextRelease(bitmapContext);
+    CGImageRelease(cgImage);
+    
+    return output;
+}
+
 @end

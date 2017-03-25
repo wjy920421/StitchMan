@@ -11,12 +11,15 @@
 #import "SIFT.h"
 #import "Match.h"
 
+
 @class StitchViewController;
 
 @interface ViewController : UIViewController
 <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 {
     UIImage *image[2];
+    BOOL image1FeaturesDetected;
+    BOOL image2FeaturesDetected;
 }
 
 @property (strong, nonatomic) StitchViewController *stitchViewController;
@@ -25,8 +28,12 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView2;
 
--(IBAction)switchToStitchView:(id)sender;
+- (IBAction)switchToStitchView:(id)sender;
 
--(IBAction)openImage;
+- (IBAction)openImage;
+
+- (IBAction)match;
+
+- (IBAction)detectFeatures;
 
 @end
