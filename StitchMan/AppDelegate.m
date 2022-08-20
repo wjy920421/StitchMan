@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import "ViewController_iPad.h"
+
+#define isPad (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
 
 @implementation AppDelegate
 
@@ -16,8 +19,16 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"MainView" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    if(isPad){
+        self.viewController_iPad = [[ViewController_iPad alloc] initWithNibName:@"MainView_iPad" bundle:nil];
+        self.window.rootViewController = self.viewController_iPad;
+    }
+    else{
+        self.viewController = [[ViewController alloc] initWithNibName:@"MainView"
+                                                               bundle:nil];
+        self.window.rootViewController = self.viewController;
+    }
+    
     [self.window makeKeyAndVisible];
     return YES;
 }

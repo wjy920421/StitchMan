@@ -10,10 +10,14 @@
 
 @class ViewController;
 
+@class ViewController_iPad;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) ViewController *viewController;
+
+@property (strong, nonatomic) ViewController_iPad *viewController_iPad;
 
 @end
